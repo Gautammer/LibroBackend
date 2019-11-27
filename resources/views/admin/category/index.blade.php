@@ -93,6 +93,12 @@
 				</div>
 			</div>
 		</div>
+		@if (session()->has('success'))
+		<div class="alert alert-success alert-block">
+			<button type="button" class="close" data-dismiss="alert">×</button>	
+			<strong style="margin-left: 4px;">{{ session('success') }}</strong>
+		</div>
+		@endif
 		<div class="kt-portlet__body">
 
 			<!--begin: Datatable -->
@@ -101,6 +107,7 @@
 					<tr>
 						<th>No.</th>
 						<th>Category name</th>
+						<th>Category city</th>
 						<th>Date</th>
 						<th>Action</th>
 					</tr>
@@ -110,6 +117,9 @@
 					<tr>
 						<td>{{ $k + 1 }}</td>
 						<td>{{ $cat->cname }}</td>
+						@foreach($cat->cityid as $ct)
+						<td>{{ $ct->cityname }}</td>
+						@endforeach
 						<td>{{ $cat->created_at }}</td>
 						<td>
 							<a href="{{ route('admin.category.edit',['id'=>$cat->cid]) }}" class="btn btn-label-info">
@@ -131,6 +141,7 @@
 					<tr>
 						<th>No.</th>
 						<th>Category name</th>
+						<th>Category city</th>
 						<th>Date</th>
 						<th>Action</th>
 					</tr>

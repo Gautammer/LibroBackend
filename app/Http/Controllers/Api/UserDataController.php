@@ -13,6 +13,7 @@ use App\Model\lsProductCategory;
 use App\Model\lsCity;
 use App\model\lsUserRegistration;
 use Illuminate\Support\Collection;
+use App\Model\lsServicePrice;
 
 class UserDataController extends Controller
 {
@@ -49,11 +50,40 @@ class UserDataController extends Controller
     							
     }
 
-   public function getServices(Request $request)
+    // public function getServices(Request $request)
+    // {
+    //     $v = Validator::make($request->all(), [
+    //         'scid'=>'required',
+    //         'cid'=>'required',
+    //         // 'body' => 'required',
+    //     ]);
+    //     if ($v->fails()) {
+    //         return $this->sendError('Data Error.', 'Service Name is required or Not Available',200);
+    //     }
+
+    //     $cid = $request->input('cid');
+    //     $scid = $request->input('scid');
+    //     $getSer = lsService::where('cid',$cid)
+    //     ->where('scid',$scid)
+    //     // ->join('ls_service_prices','ls_service_prices.sid','=','ls_services.sid')
+    //     // ->join('ls_service_specialprices','ls_service_specialprices.sid','=','ls_services.sid')
+    //     ->get();
+    //     return $getSer;
+    //             // exit();
+    //     if(strlen($getSer) > 2){
+    //         return $this->sendResponse($getSer,'Successfully get ServicesData.',200);
+    //     }
+    //     else{
+    //         return $this->sendError('data Error.', 'Sorry data not found',200);
+    //     }
+    // }
+
+   public function getUserServices(Request $request)
     {
     	$v = Validator::make($request->all(), [
     		'scid'=>'required',
     		'cid'=>'required',
+            
     		// 'body' => 'required',
     	]);
     	if ($v->fails()) {
@@ -64,12 +94,13 @@ class UserDataController extends Controller
     	$scid = $request->input('scid');
     	$getSer = lsService::where('cid',$cid)
     	->where('scid',$scid)
-    			// ->select('sname')
-    	->get();
-
+    			->join('ls_service_prices','ls_service_prices.sid','=','ls_services.sid')
+                ->join('ls_service_specialprices','ls_service_specialprices.sid','=','ls_services.sid')
+    	       ->get();
+return $getSer;
     			// exit();
     	if(strlen($getSer) > 2){
-    		return $this->sendResponse($getSer,'Successfully get getServices.',200);
+    		return $this->sendResponse($getSer,'Successfully get ServicesData.',200);
     	}
     	else{
     		return $this->sendError('data Error.', 'Sorry data not found',200);

@@ -38,6 +38,9 @@ Route::group(['namespace' => 'Api\v1'],function(){
 		Route::group(['middleware'=>'auth:api'],function(){
 				
 		});
+		Route::get('v1/SubCategories', 'v1\AJAXController@SubCategories')->name('GetSubCategories');
+	Route::get('v1/ProductCategories', 'v1\AJAXController@ProductCategories')->name('GetProductCategories');
+	Route::get('v1/Localities', 'v1\AJAXController@Locality')->name('GetLocalities');
 
 		//this is route for "Partner App"
 		Route::group(['prefix'=>'partner'],function(){
@@ -74,4 +77,5 @@ Route::post('/testSer',"Api\TestDataController@getServices");
 Route::post('/testProSer',"Api\TestDataController@getProdcutSer");
 Route::post('/testAadhar',"Api\TestDataController@getAadhar");
 Route::post('/testUserData',"Api\UserDataController@getUserCatData");
-Route::post('/testUserSer',"Api\UserDataController@getServices");
+// Route::post('/getServices',"Api\UserDataController@getServices");
+// Route::post('/testUserSer',"Api\UserDataController@getUserServices");

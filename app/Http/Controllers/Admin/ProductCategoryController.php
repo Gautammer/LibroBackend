@@ -76,4 +76,6 @@ class ProductCategoryController extends Controller
        $lsSubCategory = lsProductCategory::where('pcid',$id)->delete();
         return redirect()->route('admin.ProductCategory.index');
     }
+
+    
 }

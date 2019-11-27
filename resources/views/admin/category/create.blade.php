@@ -47,10 +47,23 @@
 						@csrf
 						<label for="cname">Category Name</label>
 						<input type="text" class="form-control @if($errors->has('cname')) is-invalid @endif" id="cname" name="cname" placeholder="Enter Category Name" value="{{ old('cname') }}">
-						@if($errors->has('cname'))
-							<div class="invalid-feedback">Shucks, {{ $errors->first('cname') }}</div>
-						@endif
 						<span class="form-text text-muted">Please Enter Category name here,Category must be unique.</span>
+						@if($errors->has('cname'))
+							<div class="invalid-feedback">{{ $errors->first('cname') }}</div>
+						@endif
+						<br>
+						<label for="exampleSelect1">Select City</label>
+						<select class="form-control" id="cityid" name="cityid">
+							<option disabled selected value>Select City</option>	
+							@foreach($cities as $city)
+							<option value="{{ $city->cityid }}">{{ $city->cityname }}</option>
+							@endforeach
+							
+						</select>
+						@if($errors->has('cityid'))
+							<div class="invalid-feedback">{{ $errors->first('cityid') }}</div>
+						@endif
+
 					</div>
 					
 				</div>

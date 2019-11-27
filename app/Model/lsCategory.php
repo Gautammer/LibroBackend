@@ -10,7 +10,7 @@ class lsCategory extends Model
     protected $primaryKey = "cid";
 
     protected $fillable = [
-        'cname',
+        'cname','cityid',
     ];
 
     //this function for set Uppercase letter of categoriesname

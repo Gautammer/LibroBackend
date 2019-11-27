@@ -75,10 +75,10 @@ class TestDataController extends Controller
     	$cid = $request->input('cid');
     	$scid = $request->input('scid');
     	$getSer = lsService::where('cid',$cid)
-    	->where('scid',$scid)
-    			// ->select('sname')
-    	->get();
-
+        ->where('scid',$scid)
+                ->join('ls_service_prices','ls_service_prices.sid','=','ls_services.sid')
+                ->join('ls_service_specialprices','ls_service_specialprices.sid','=','ls_services.sid')
+               ->get();
     			// exit();
     	if(strlen($getSer) > 2){
     		return $this->sendResponse($getSer,'Successfully get getServices.',200);

@@ -93,6 +93,12 @@
 				</div>
 			</div>
 		</div>
+		@if (session()->has('success'))
+		<div class="alert alert-success alert-block">
+			<button type="button" class="close" data-dismiss="alert">×</button>	
+			<strong style="margin-left: 4px;">{{ session('success') }}</strong>
+		</div>
+		@endif
 		<div class="kt-portlet__body">
 
 			<!--begin: Datatable -->

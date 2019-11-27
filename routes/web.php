@@ -43,6 +43,10 @@ Route::group(['prefix'=>'admin/','namespace'=>'Admin','as'=>'admin.'],function()
 		// Route::get("/partnerView",'PartnerController@show')->name('partnerView');
 		Route::get('/partnerView/{id}', 'PartnerController@getPartnerDetails')->name('partnerView');
 		Route::get('/users/{id}', 'UsersController@getPartnerDetails')->name('users');
+		Route::get('/subCategories/{id}', 'ServiceController@subCategories')->name('services.subCategories');
+		Route::get('/productCategory/{id}', 'ServiceController@productCategory')->name('services.productCategory');
+		Route::get('/getCities/{id}', 'ServiceController@getCities')->name('services.getCities');
+
 
 		// Route::resource("/offers",'admin.offers');
 	});
