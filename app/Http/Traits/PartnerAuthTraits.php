@@ -40,13 +40,16 @@ trait PartnerAuthTraits
     protected function credentials(Request $request)
     {
     	$UserIsActive = lsPartner::where($this->username($request->get('username')),$request->get('username'))->first();
+        // return $UserIsActive;
+        // exit();
 
     	if(!empty($UserIsActive)){
-    		if($UserIsActive->is_approved == '0'){
+            // echo $UserIsActive->is_active;
+    		if($UserIsActive->is_active == '0'){
     			return [$this->username($request->get('username'))=>'inactive'];
     		}
     		else{
-    			return [$this->username($request->get('username'))=>$request->get('username'),'password'=>$request->password,'is_approved'=>'1'];
+    			return [$this->username($request->get('username'))=>$request->get('username'),'password'=>$request->password,'is_active'=>'1'];
     		}
     	}
         return $request->only($this->username($request->get('username')), 'password');
@@ -88,6 +91,7 @@ trait PartnerAuthTraits
     }
 
     public function issueToken(Request $request, $grantType, $scope = ""){
+        return $grantType;
 		$params = [
     		'grant_type' => $grantType,
     		'client_id' => $this->client->id,
@@ -96,6 +100,8 @@ trait PartnerAuthTraits
             'username' => $request->username,
             'password' => $request->password,
     	];
+        print_r($params);
+        exit();
     	$request->request->add($params);
     	$proxy = Request::create('oauth/token', 'POST');
 

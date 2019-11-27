@@ -6,15 +6,26 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\PartnerResource;
 use App\Http\Traits\PartnerAuthTraits;
 use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Auth\RequestGuard;
+use Laravel\Passport\Client;
 
 class LoginController extends Controller
 {
     use PartnerAuthTraits;
 
+    private $client;
+    
+    public function __construct(){
+        $this->client = Client::find(2);
+    }
+    
     public function login(Request $request)
     {
+        /*return $request;
+        exit();*/
     	$validate = $this->validateLogin($request->all());
     	if($validate->fails()){
     		return $this->sendError("Validation Error.",$validate->errors()->first(),200);
@@ -26,8 +37,12 @@ class LoginController extends Controller
     	// return json_encode($credentials);
     	if(Auth::guard('partner_api')->attempt($credentials)){
     		$user = Auth::guard('partner_api')->user();
-    		$success = json_decode($this->issueToken($request,'password')->getContent(),true);
+    		$success = json_decode($this->issueToken($request,'password'),true);
+            // return $success;
+            // exit();
             $success['user'] = new PartnerResource($user);
+            // print_r($success['user']);
+            // exit();
     		// $success['access_token'] =  $user->createToken('AppName')->accessToken;
     		return $this->sendResponse($success,"Login Successful.");    		
     	}
@@ -62,5 +77,32 @@ class LoginController extends Controller
     		->update(['revoked' => true]);
     	$accessToken->revoke();
     	return $this->sendResponse([],"Logout Successfully.");
+    }
+
+    public function sendResponse($result, $message,$code=200)
+    {
+        $response = [
+            'status' => true,
+            'message' => $message,
+            'data'    => $result,
+        ];
+
+        return response()->json($response,$code);
+    }
+
+
+    public function sendError($error, $errorMessages = [], $code = 200)
+    {
+        $response = [
+            'status' => false,
+            'message' => $error,
+        ];
+
+
+        if(!empty($errorMessages)){
+            $response['errors'] = $errorMessages;
+        }
+
+        return response()->json($response, $code);
     }
 }
