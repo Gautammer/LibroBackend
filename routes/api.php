@@ -30,7 +30,7 @@ Route::group(['namespace' => 'Api\v1'],function(){
 			Route::post('/register','User\AuthController@register');
 			Route::post('/activeAccount','User\AuthController@activeAccount');
 			Route::post('/resendOTP','User\AuthController@resendOTP');
-			Route::get('/login','User\AuthController@login');
+			Route::post('/login','User\AuthController@login');
 			Route::post('/refresh', 'User\AuthController@refresh');
 			Route::post("/logout",'User\AuthController@logout')->middleware('auth:api');	
 		});

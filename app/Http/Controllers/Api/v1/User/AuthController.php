@@ -56,7 +56,7 @@ class AuthController extends BaseController
 
     	if(Auth::attempt($credentials)){
     		$user = Auth::user();
-    		$success = json_decode($this->issueToken($request,'password')->getContent(),true);
+    		$success = json_decode($this->issueToken($request,'password'),true);
             $success['user'] = new UserResource($user);
     		// $success['access_token'] =  $user->createToken('AppName')->accessToken;
     		return $this->sendResponse($success,"Login Successful.");    		
