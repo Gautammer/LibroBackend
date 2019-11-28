@@ -95,6 +95,8 @@ trait AuthTraits
             'username' => $request->username,
             'password' => $request->password,
     	];
+        print_r($params);
+        exit();
     	$request->request->add($params);
     	$proxy = Request::create('oauth/token', 'POST');
 

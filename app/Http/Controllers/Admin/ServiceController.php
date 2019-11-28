@@ -183,7 +183,7 @@ class ServiceController extends Controller
         return $SubCategories;
     }
     public function productCategory(Request $request) {
-      $productCategory = lsProductCategory::select('pcid', 'pcname')->where('pcid', $request->id)->get();
+      $productCategory = lsProductCategory::select('pcid', 'pcname')->where('scid', $request->id)->get();
       $pcat=[];
       $d = '<option disabled selected value>Select Product Category</option>';
       echo $d;
