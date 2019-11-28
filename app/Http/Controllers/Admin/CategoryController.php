@@ -28,6 +28,7 @@ class CategoryController extends Controller
     public function create(Request $request)
     {
         $cities = lsCity::all();
+        
         return view('admin.category.create',compact('cities'));
     }
 
@@ -43,9 +44,10 @@ class CategoryController extends Controller
             'cityid.required' => 'The City name is required.',
             'cname.unique' => 'The Category name is Already Exist!!!.',
         ])->validate();
-           // return $validator;
+        //    return $validator;
 
         $create = lsCategory::create($request->all());
+        // return $create;
         return redirect()->route('admin.category.index')->with('success','SuccessFully Add Category');
     }
 
