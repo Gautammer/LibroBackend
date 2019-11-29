@@ -11,7 +11,7 @@ class lsPartnerProfile extends Model
     protected $primaryKey = "ppid";
 
     protected $fillable = [
-        'pid','cid','scid','pcid','sid','aacid',
+        'pid','cid','scid','pcid','sid','aacid','experience'
     ];
 
     //this function for set Uppercase letter of categoriesname

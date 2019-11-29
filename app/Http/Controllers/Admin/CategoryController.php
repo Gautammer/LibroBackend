@@ -44,12 +44,12 @@ class CategoryController extends Controller
             // 'cityid.required' => 'The City name is required.',
             'cname.unique' => 'The Category name is Already Exist!!!.',
         ])->validate();
-        //    return $validator;
-
-        // $create = lsCategory::create($request->all());
+       
+        
         $create = new lsCategory;
         $create->cname =  $request->cname;
         $create->cityid = 1;
+        // $create->cityid = 1;
         $create->save();
         // return $create;
         return redirect()->route('admin.category.index')->with('success','SuccessFully Add Category');

@@ -77,9 +77,9 @@ Route::post('/testSer',"Api\TestDataController@getServices");
 Route::post('/testProSer',"Api\TestDataController@getProdcutSer");
 Route::post('/testAadhar',"Api\TestDataController@getAadhar");
 Route::post('/testUserData',"Api\UserDataController@getUserCatData");
-Route::get('/partnerProfile',"Api\TestDataController@getPartnerProfile");
-Route::get('/storePartnerProfile',"Api\TestDataController@storePartnerData");
-Route::get('/showservice', 'Api\TestDataController@showservice');
+Route::post('/partnerProfile',"Api\TestDataController@getPartnerProfile");
+Route::post('/storePartnerProfile',"Api\TestDataController@storePartnerData");
+Route::psot('/showservice', 'Api\TestDataController@showservice');
 
 
 // Route::post('/getServices',"Api\UserDataController@getServices");

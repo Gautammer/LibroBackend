@@ -19,6 +19,7 @@ use App\Model\lsServiceImage;
 use App\Model\lsServiceLocality;
 use App\Model\lsServicePrice;
 use App\Model\lsServiceSpecialprice;
+use App\Model\lsPartnerProfile;
 
 class TestDataController extends Controller
 {
@@ -137,8 +138,8 @@ class TestDataController extends Controller
         $data->pid = $request->input('pid');
         $data->save();
 
-        return $data;
-        exit();
+        // return $data;
+        // exit();
 
         $img = $request->input('aaimage_front');
         $getAadh = lsAdharcard::where('aaimage_front',$img)
@@ -169,12 +170,41 @@ class TestDataController extends Controller
         if ($v->fails()) {
             return $this->sendError('Data Error.', 'data is required or Not Available',200);
         }
-        return $request;
+        // return $request;
         
-        $ParAddharIMG = new lsPartnerAdharcard;
-        $ParAddharIMG->partner_id;
-        $ParAddharIMG->aacid;
-        $ParAddharIMG->save();
+        
+
+        // $profileData = new lsPartnerProfile;
+        // $profileData->cid = lsCategory::where('cid',$request->input('cid'))->get();
+        // $profileData->scid = lsSubCategory::where('scid',$request->input('scid'))->get();
+        // $profileData->pcid = lsProductCategory::where('pcid',$request->input('pcid'))->get();
+        // $profileData->sid = lsService::where('sid',$request->input('sid'))->get();
+        // $profileData->aaid = lsAdharcard::where('aacid',$request->input('aacid'))->get();
+        // $profileData->pid = lsPartner::where('pid',$request->input('pid'))->get();
+
+        $profileData = new lsPartnerProfile;
+        $profileData->cid = $request->input('cid');
+        $profileData->scid = $request->input('scid');
+        $profileData->pcid = $request->input('pcid');
+        $profileData->sid = $request->input('sid');
+        $profileData->aacid = $request->input('aacid');
+        $profileData->pid = $request->input('pid');
+        $profileData->experience = $request->input('experince');
+        $profileData->save();
+
+        // foreach ($profileData as $key => $lse){
+        //     // $scid = $lse->scid;
+        //     $lse->experince = lsPartner::where('pid',$request->input('pid'))->get();
+           
+        // }
+        // $profileData->experince = lsPartner::where('pid',$request->input('pid'))->select('pExperiance')->get();
+        if(strlen($profileData) > 2){
+            return $this->sendResponse($profileData,'Successfully store Partner.',200);
+        }
+        else{
+            return $this->sendError('data Error.', 'Sorry data not store Successfully',200);
+        }
+        return $profileData;
 
         
     }

@@ -84,6 +84,7 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
+       
        $this->validate($request,[
         'img_upload[]' => '',
         'img_upload.*' => 'image|mimes:jpeg,png,jpg,gif,svg',
