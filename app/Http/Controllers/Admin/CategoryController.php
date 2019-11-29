@@ -37,16 +37,20 @@ class CategoryController extends Controller
         // return $request;
         $validator = Validator::make($request->all(), [
             'cname'   => 'required|unique:ls_categories',
-            'cityid'   => 'required',
+            // 'cityid'   => 'required',
         ],
         [
             'cname.required' => 'The Category name is required.',
-            'cityid.required' => 'The City name is required.',
+            // 'cityid.required' => 'The City name is required.',
             'cname.unique' => 'The Category name is Already Exist!!!.',
         ])->validate();
         //    return $validator;
 
-        $create = lsCategory::create($request->all());
+        // $create = lsCategory::create($request->all());
+        $create = new lsCategory;
+        $create->cname =  $request->cname;
+        $create->cityid = 1;
+        $create->save();
         // return $create;
         return redirect()->route('admin.category.index')->with('success','SuccessFully Add Category');
     }
@@ -65,11 +69,11 @@ class CategoryController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'cname'   => 'required|unique:ls_categories,cname,'.$id.',cid',
-            'cityid' => 'required',
+            // 'cityid' => 'required',
         ],
         [
             'cname.required' => 'The Category name is required.',
-            'cityid.required' => 'The City name is required.',
+            // 'cityid.required' => 'The City name is required.',
             'cname.unique' => 'The Category name is Already Exist!!!.',
         ])->validate();
 

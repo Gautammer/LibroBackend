@@ -53,22 +53,22 @@
 						@endif
 						<span class="form-text text-muted">Please Enter Category name here,Category must be unique.</span>
 						<br>
-						<label for="exampleSelect1">Select City</label>
-						<select class="form-control" id="cityid" name="cityid">
+						<!-- <label for="exampleSelect1">Select City</label>
+						<select class="form-control" id="cityid" name="cityid"> -->
 							<!-- <option>Select City</option> -->
-							@foreach($cities as $city)
-							<option value="{{ $city->cityid }}"
+							<!-- @foreach($cities as $city)
+							<option value="{{ $city->cityid }}" -->
 								<?php
-								if($city->cityid == $categorie->cityid){
-									echo "selected";
-								}
+								// if($city->cityid == $categorie->cityid){
+								// 	echo "selected";
+								// }
 								
 								?>
-								>{{ $city->cityname }}</option>
+								<!-- >{{ $city->cityname }}</option>
                  
 							@endforeach
 							
-						</select>
+						</select> -->
 						@if($errors->has('cityid'))
 							<div class="invalid-feedback">{{ $errors->first('cityid') }}</div>
 						@endif

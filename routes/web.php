@@ -46,6 +46,7 @@ Route::group(['prefix'=>'admin/','namespace'=>'Admin','as'=>'admin.'],function()
 		Route::get('/subCategories/{id}', 'ServiceController@subCategories')->name('services.subCategories');
 		Route::get('/productCategory/{id}', 'ServiceController@productCategory')->name('services.productCategory');
 		Route::get('/getCities/{id}', 'ServiceController@getCities')->name('services.getCities');
+		// Route::get('/showservice/{id}', 'ServiceController@showservice')->name('services.showservice');
 
 
 		// Route::resource("/offers",'admin.offers');

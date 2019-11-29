@@ -52,14 +52,14 @@
 							<div class="invalid-feedback">{{ $errors->first('cname') }}</div>
 						@endif
 						<br>
-						<label for="exampleSelect1">Select City</label>
+						<!-- <label for="exampleSelect1">Select City</label>
 						<select class="form-control" id="cityid" name="cityid">
 							<option disabled selected value>Select City</option>	
 							@foreach($cities as $city)
 							<option value="{{ $city->cityid }}">{{ $city->cityname }}</option>
 							@endforeach
 							
-						</select>
+						</select> -->
 						@if($errors->has('cityid'))
 							<div class="invalid-feedback">{{ $errors->first('cityid') }}</div>
 						@endif

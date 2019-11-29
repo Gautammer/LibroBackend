@@ -4,16 +4,21 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class lsPartnerCategoryAndPrice extends Model
+class lsPartnerProfile extends Model
 {
     //
-    protected $table = "ls_partner_category_and_prices";
-    protected $primaryKey = "partner_cat_nd_price_id";
+    protected $table = "ls_partner_profile";
+    protected $primaryKey = "ppid";
 
     protected $fillable = [
-        'partner_id','cid','price','category_name',
+        'pid','cid','scid','pcid','sid','aacid',
     ];
+
+    //this function for set Uppercase letter of categoriesname
+   
+
     
+
     public function getCreatedAtAttribute($value)
     {
     	return date('d-M, Y h:i A', strtotime($value));

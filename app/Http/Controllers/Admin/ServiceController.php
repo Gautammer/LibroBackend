@@ -12,6 +12,7 @@ use App\Model\lsServiceImage;
 use App\Model\lsServiceLocality;
 use App\Model\lsServicePrice;
 use App\Model\lsServiceSpecialprice;
+use App\Model\lsState;
 use App\Model\lsCategory;
 use App\Model\lsSubCategory;
 use App\Model\lsCity;
@@ -30,7 +31,35 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        return view('admin.services.index');
+        $listServices = lsService::all();
+         // $listServices->cityid = lsServiceCity::where('sid',$listServices->sid)->get();
+        foreach ($listServices as $key => $lse){
+            $id = $lse->sid;
+            $lse->cityid = lsServiceCity::where('sid',$id)->select('cityname')->get();
+           
+        }
+        foreach ($listServices as $key => $lse){
+            $cid = $lse->cid;
+            $lse->cid = lsCategory::where('cid',$cid)->select('cname')->get();
+           
+        }
+        foreach ($listServices as $key => $lse){
+            $scid = $lse->scid;
+            $lse->scid = lsSubCategory::where('scid',$scid)->select('scname')->get();
+           
+        }
+        foreach ($listServices as $key => $lse){
+            $pcid = $lse->scid;
+            $lse->pcid = lsProductCategory::where('pcid',$scid)->select('pcname')->get();
+           
+        }
+        foreach ($listServices as $key => $lse){
+            $stateid = $lse->stateid;
+            $lse->stateid = lsState::where('stateid',$stateid)->select('statename')->get();
+           
+        }
+        // return $listServices;
+        return view('admin.services.index',compact('listServices'));
     }
 
     /**
@@ -85,6 +114,7 @@ class ServiceController extends Controller
        $service->stateid = 1;
        $service->updateuid = 1;
        $service->uid = 1;
+
        $service->save();
 
        $cityid = DB::table('ls_cities')->select('cityname')->where('cityid',$request->cityname)->first();
@@ -214,4 +244,65 @@ class ServiceController extends Controller
         return $getLocality;
         // exit();
     }
+
+    public function showservice(){
+        $services = lsService::all();
+        $responce = array();
+        // return "hi";
+        // exit();
+        foreach($services as $service){
+            $new = array();
+            $cat_name = DB::table('ls_categories')->select('cname')->where('cid',$service->cid)->first();
+            $subcat_name = DB::table('ls_sub_categories')->select('scname')->where('scid',$service->scid)->first();
+            $product_name = DB::table('ls_product_categories')->select('pcname')->where('pcid',$service->pcid)->first();
+     
+            $new['service_id']  = $service->sid;
+            $new['service_name']  = $service->sname;
+            $new['service_id']  = $service->sid;
+            $new['category_id'] = $service->cid;
+            $new['category_name']  = $cat_name->cname;
+            $new['subcat_id']  = $service->scid;
+            $new['subcat_name']  = $subcat_name->scname;
+            $new['product_id'] = $service->pcid;
+            $new['product_name'] = $product_name->pcname;
+            $new['service_detail'] = $service->sdetails;
+            $new['sp_status']= $service->sp_details;
+            $new['uid']= $service->uid;
+            $new['update_id']= $service->updateid;
+            $new['status']= $service->status;
+            $new['created_at']= $service->created_at;
+            $new['updated_at']= $service->updated_at;
+
+            $services_cities  = lsServiceCity::where('sid',$service->sid)->first();
+            $new['city_id']=$services_cities->cityid;
+            $new['city_name']=$services_cities->cityname;
+
+            $services_images = lsServiceImage::where('sid',$service->sid)->first();
+            $new['image_id'] = $services_images->siid;
+            $new['images'] = $services_images->siImage;
+
+            $services_localities = lsServiceLocality::where('sid',$service->sid)->first();
+            $new['locality_id'] = $services_localities->localitieid;
+            $new['locality_name'] = $services_localities->localitie_name;
+
+            $services_sprice = lsServicePrice::where('sid',$service->sid)->first();
+            $new['city_id_for_price']=$services_sprice->cityid;
+            $new['service_price']=$services_sprice->sprice;
+
+            $services_specialprice = lsServiceSpecialprice::where('sid',$service->sid)->first();
+            if ($services_specialprice === null) {
+                $new['special_price'] = "Not Availabel";
+             }
+             else{
+                $new['special_price_city'] = $services_specialprice->cityid;
+                $new['special_price'] = $services_specialprice->sp_specialprice;
+             }
+           
+            array_push($responce,$new);
+        }
+        return $responce;
+        //return json_encode($services_cities);
+        //return json_encode($services);
+    }   
+
 }

@@ -111,22 +111,35 @@
 						<th>Sub Category</th>
 						<th>Product</th>
 						<th>state</th>
+						<th>City</th>
 						<th>Service Details</th>
 						<th>Create At</th>					
 						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
-					
+					@foreach($listServices as $k => $lser)
 					<tr>
-						<td>1</td>
-						<td>Ac</td>
-						<td>Elcetronics</td>
-						<td>Ac</td>
-						<td>LG</td>
-						<td>Gujarat</td>
-						<td>This is nice service</td>
-						<td>10/2/2020</td>
+						<td>{{ $k + 1 }}</td>
+						<td>{{ $lser->sname }}</td>
+						@foreach($lser->cid as $ls)
+						<td>{{ $ls->cname }}</td>
+						@endforeach
+						@foreach($lser->scid as $ls)
+						<td>{{ $ls->scname }}</td>
+						@endforeach
+						@foreach($lser->pcid as $ls)
+						<td>{{ $ls->pcname }}</td>
+						@endforeach
+						@foreach($lser->stateid as $ls)
+						<td>{{ $ls->statename }}</td>
+						@endforeach
+						@foreach($lser->cityid as $ls)
+						<td>{{ $ls->cityname }}</td>
+						@endforeach
+						<td>{{ $lser->sdetails }}</td>
+						<td>{{ $lser->created_at }}</td>
+						
 						<td>
 							<a href="{{ route('admin.services.edit',1) }}" class="btn btn-label-info">
 								<i class="flaticon-edit p-0"></i>
@@ -141,7 +154,7 @@
 							<!-- </form> -->
 						</td>
 					</tr>
-					
+					@endforeach
 				</tbody>
 				<tfoot>
 					<tr>
@@ -151,6 +164,7 @@
 						<th>Sub Category</th>
 						<th>Product</th>
 						<th>state</th>
+						<th>city</th>
 						<th>Service Details</th>
 						<th>Create At</th>					
 						<th>Action</th>
