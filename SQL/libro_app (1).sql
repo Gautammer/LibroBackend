@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.1
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 27, 2019 at 04:33 PM
--- Server version: 10.1.33-MariaDB
--- PHP Version: 7.2.6
+-- Host: localhost:3306
+-- Generation Time: Nov 29, 2019 at 09:54 PM
+-- Server version: 5.6.46-cll-lve
+-- PHP Version: 7.2.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -98,9 +98,15 @@ CREATE TABLE `ls_categories` (
 --
 
 INSERT INTO `ls_categories` (`cid`, `cname`, `cityId`, `cat_description`, `cat_img`, `created_at`, `updated_at`) VALUES
-(1, 'other', 1, 'You can change sides by logging into the Libreservice. Here\'s how. 1. Log in to the Libreservice. From the Libreservice drop-down menu, select Mobile Services. Scroll to the bottom of the page and select On. Select the type of phone you are using. Select the sides of your choice, then Confirm. Check the changes and select Submit. ', 'https://image.flaticon.com/icons/svg/2226/2226098.svg', NULL, NULL),
-(2, 'Other@', 4, 'Koodo does not take privacy and personal information lightly. That\'s why it adheres to strict privacy and security policies to protect your information.', 'https://image.flaticon.com/icons/svg/2226/2226098.svg', '2019-11-17 16:33:04', '2019-11-17 16:33:04'),
-(3, 'Toyota', 3, 'If you have activated your phone online, you have already registered for the Prepaid Libreservice. All you have to do is log in using the username and password you have chosen when you activate your phone. ', 'https://image.flaticon.com/icons/svg/2226/2226098.svg', '2019-11-17 18:59:49', '2019-11-17 18:59:49');
+(13, 'Appliances And Electronics', 1, NULL, NULL, '2019-11-29 14:26:38', '2019-11-29 14:26:38'),
+(14, 'Carpenter, Electrician, Plumber', 1, NULL, NULL, '2019-11-29 14:27:32', '2019-11-29 14:30:16'),
+(15, 'Cleaning', 1, NULL, NULL, '2019-11-29 14:27:54', '2019-11-29 14:27:54'),
+(16, 'Car AC And Car Puncture', 1, NULL, NULL, '2019-11-29 14:28:26', '2019-11-29 14:28:26'),
+(17, 'Painting And Pest Control', 1, NULL, NULL, '2019-11-29 14:29:17', '2019-11-29 14:29:17'),
+(18, 'Salon, Massage And Fitness', 1, NULL, NULL, '2019-11-29 14:29:57', '2019-11-29 14:29:57'),
+(19, 'Computer, Laptop, Printer And CCTV', 1, NULL, NULL, '2019-11-29 14:31:02', '2019-11-29 14:31:02'),
+(20, 'Event And Photographer', 1, NULL, NULL, '2019-11-29 14:32:09', '2019-11-29 14:32:09'),
+(21, 'Hardware Maintenance', 1, NULL, NULL, '2019-11-29 14:32:30', '2019-11-29 14:32:30');
 
 -- --------------------------------------------------------
 
@@ -121,7 +127,7 @@ CREATE TABLE `ls_cities` (
 --
 
 INSERT INTO `ls_cities` (`cityid`, `cityname`, `stateid`, `created_at`, `updated_at`) VALUES
-(1, 'Surat', 1, NULL, NULL),
+(1, 'Bhavnagar', 1, NULL, NULL),
 (2, 'Ahmedabad', 1, NULL, NULL),
 (3, 'Baroda', 1, NULL, NULL),
 (4, 'Mumbai', 2, NULL, NULL),
@@ -164,7 +170,10 @@ CREATE TABLE `ls_localities` (
 --
 
 INSERT INTO `ls_localities` (`localitie_id`, `localitie_name`, `cityid`, `created_at`, `updated_at`) VALUES
-(1, 'Ambawadi', 4, NULL, NULL);
+(1, 'Ambawadi', 4, NULL, NULL),
+(2, 'Ghogha Circle', 1, NULL, NULL),
+(3, 'Kaliyabid', 1, NULL, NULL),
+(4, 'Waghawadi Road', 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -415,8 +424,72 @@ CREATE TABLE `ls_product_categories` (
 --
 
 INSERT INTO `ls_product_categories` (`pcid`, `pcname`, `scid`, `created_at`, `updated_at`) VALUES
-(1, 'Window Ac', 1, NULL, NULL),
-(2, 'Split Ac', 1, '2019-11-26 08:00:00', NULL);
+(5, 'Service', 9, '2019-11-29 15:32:17', '2019-11-29 15:32:17'),
+(6, 'Normal Wash', 9, '2019-11-29 15:32:32', '2019-11-29 15:32:32'),
+(7, 'Full Wash', 9, '2019-11-29 15:32:44', '2019-11-29 15:32:44'),
+(8, 'Installation', 9, '2019-11-29 15:33:01', '2019-11-29 15:33:01'),
+(9, 'Un-Installation', 9, '2019-11-29 15:33:12', '2019-11-29 15:33:12'),
+(10, 'Installation + Un-Installation', 9, '2019-11-29 15:33:26', '2019-11-29 15:33:26'),
+(11, 'Gas', 9, '2019-11-29 15:33:40', '2019-11-29 15:33:40'),
+(12, 'Service/ Visit', 10, '2019-11-29 15:35:28', '2019-11-29 15:35:28'),
+(13, 'Fitting DTH', 13, '2019-11-29 15:35:51', '2019-11-29 15:35:51'),
+(14, 'Refitting DTH', 13, '2019-11-29 15:36:03', '2019-11-29 15:36:03'),
+(15, 'Compact', 25, '2019-11-29 15:36:49', '2019-11-29 15:36:49'),
+(16, 'Sedan', 25, '2019-11-29 15:37:02', '2019-11-29 15:37:02'),
+(17, 'SUV', 25, '2019-11-29 15:37:13', '2019-11-29 15:37:13'),
+(18, '7 Seater', 25, '2019-11-29 15:37:42', '2019-11-29 15:37:42'),
+(19, '1 ft', 22, '2019-11-29 15:38:07', '2019-11-29 15:38:07'),
+(20, '2 ft', 22, '2019-11-29 15:38:18', '2019-11-29 15:38:18'),
+(21, '3 ft', 22, '2019-11-29 15:38:33', '2019-11-29 15:38:33'),
+(22, '4 ft', 22, '2019-11-29 15:38:45', '2019-11-29 15:38:45'),
+(23, '5 ft', 22, '2019-11-29 15:38:52', '2019-11-29 15:38:52'),
+(24, '6 ft', 22, '2019-11-29 15:38:58', '2019-11-29 15:38:58'),
+(25, '7 ft', 22, '2019-11-29 15:39:06', '2019-11-29 15:39:06'),
+(26, '8 ft', 22, '2019-11-29 15:39:15', '2019-11-29 15:39:15'),
+(27, '1 Seat', 23, '2019-11-29 15:40:57', '2019-11-29 15:40:57'),
+(28, '2 Seat', 23, '2019-11-29 15:41:17', '2019-11-29 15:41:17'),
+(29, '3 Seat', 23, '2019-11-29 15:41:27', '2019-11-29 15:41:27'),
+(30, '4 Seat', 23, '2019-11-29 15:41:37', '2019-11-29 15:41:37'),
+(31, '5 Seat', 23, '2019-11-29 15:42:15', '2019-11-29 15:42:15'),
+(32, '6 Seat', 23, '2019-11-29 15:42:28', '2019-11-29 15:42:28'),
+(33, '7 Seat', 23, '2019-11-29 15:42:47', '2019-11-29 15:42:47'),
+(34, '8 Seat', 23, '2019-11-29 15:43:10', '2019-11-29 15:43:10'),
+(35, '9 Seat', 23, '2019-11-29 15:43:39', '2019-11-29 15:43:39'),
+(36, '10 Seat', 23, '2019-11-29 15:43:45', '2019-11-29 15:43:45'),
+(37, '11 Seat', 23, '2019-11-29 15:44:17', '2019-11-29 15:44:17'),
+(38, '12 Seat', 23, '2019-11-29 15:44:23', '2019-11-29 15:44:23'),
+(39, '13 Seat', 23, '2019-11-29 15:44:32', '2019-11-29 15:44:46'),
+(40, '14 Seat', 23, '2019-11-29 15:45:07', '2019-11-29 15:45:07'),
+(41, '15 Seat', 23, '2019-11-29 15:45:17', '2019-11-29 15:45:17'),
+(42, 'Revolving Chair', 24, '2019-11-29 15:46:34', '2019-11-29 15:46:34'),
+(43, 'Dining Table Chair', 24, '2019-11-29 15:47:19', '2019-11-29 15:47:19'),
+(44, 'Drpl & Hang', 35, '2019-11-29 15:48:47', '2019-11-29 15:48:47'),
+(45, 'Lock', 35, '2019-11-29 15:49:03', '2019-11-29 15:49:03'),
+(46, 'Door', 35, '2019-11-29 15:49:16', '2019-11-29 15:49:16'),
+(47, 'Fitting', 35, '2019-11-29 15:49:27', '2019-11-29 15:49:27'),
+(48, 'Drawer', 35, '2019-11-29 15:49:48', '2019-11-29 15:49:48'),
+(49, 'Electric', 36, '2019-11-29 15:50:20', '2019-11-29 15:50:20'),
+(50, 'Gas Geyser', 36, '2019-11-29 15:51:06', '2019-11-29 15:51:06'),
+(51, 'Electric Geyser', 36, '2019-11-29 15:51:43', '2019-11-29 15:51:43'),
+(52, 'Water Pump', 36, '2019-11-29 15:51:58', '2019-11-29 15:51:58'),
+(53, 'Submersible Pump', 36, '2019-11-29 15:52:30', '2019-11-29 15:52:30'),
+(54, 'AC Ges', 44, '2019-11-29 15:56:56', '2019-11-29 15:56:56'),
+(55, 'Cooling Coil', 44, '2019-11-29 15:57:13', '2019-11-29 15:57:13'),
+(56, 'Installation', 12, '2019-11-29 17:50:19', '2019-11-29 17:50:19'),
+(57, 'Un-Installation', 12, '2019-11-29 17:54:58', '2019-11-29 17:54:58'),
+(58, 'Installation + Un-Installation', 12, '2019-11-29 17:55:14', '2019-11-29 17:55:14'),
+(59, 'Service', 12, '2019-11-29 17:55:27', '2019-11-29 17:55:27'),
+(60, 'Gas', 10, '2019-11-29 18:14:34', '2019-11-29 18:14:50'),
+(61, 'Service/ Visit', 13, '2019-11-29 18:15:23', '2019-11-29 18:15:23'),
+(62, 'Service', 25, '2019-11-29 18:16:14', '2019-11-29 18:16:14'),
+(63, 'Service', 22, '2019-11-29 18:16:52', '2019-11-29 18:16:52'),
+(64, 'Service', 23, '2019-11-29 18:17:08', '2019-11-29 18:17:08'),
+(65, 'Service', 24, '2019-11-29 18:17:47', '2019-11-29 18:17:47'),
+(66, 'Service', 44, '2019-11-29 18:19:26', '2019-11-29 18:19:26'),
+(67, 'Service', 14, '2019-11-29 18:19:48', '2019-11-29 18:19:48'),
+(68, 'Installation', 14, '2019-11-29 18:20:06', '2019-11-29 18:20:06'),
+(69, 'Un-Installation', 14, '2019-11-29 18:20:30', '2019-11-29 18:20:30'),
+(70, 'Installation + Un-Installation', 14, '2019-11-29 18:20:51', '2019-11-29 18:20:51');
 
 -- --------------------------------------------------------
 
@@ -499,6 +572,7 @@ CREATE TABLE `ls_services` (
   `pcid` bigint(191) UNSIGNED NOT NULL COMMENT 'productCategory_id',
   `stateid` bigint(20) UNSIGNED NOT NULL,
   `sdetails` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `partnerprice` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `sp_status` enum('0','1') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0' COMMENT '0 - Special Price does not exist in table LS_SpecialPrice,1 - Exists',
   `uid` bigint(20) UNSIGNED NOT NULL COMMENT 'uid means userid of subadmins',
   `updateuid` bigint(20) UNSIGNED DEFAULT NULL COMMENT 'updateuid means userid of subadmins',
@@ -511,13 +585,11 @@ CREATE TABLE `ls_services` (
 -- Dumping data for table `ls_services`
 --
 
-INSERT INTO `ls_services` (`sid`, `sname`, `cid`, `scid`, `pcid`, `stateid`, `sdetails`, `sp_status`, `uid`, `updateuid`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'demo1Elctronic', 3, 4, 0, 1, NULL, '1', 2, 2, '1', NULL, NULL),
-(2, 'New Service Add', 3, 5, 0, 1, 'this is the nice products', '1', 2, 2, '1', '2019-11-22 08:00:00', NULL),
-(3, 'jp', 1, 1, 1, 1, 'this is the nices', '0', 1, 1, '1', '2019-11-27 23:10:13', '2019-11-27 23:10:13'),
-(4, 'jp2', 1, 2, 2, 1, 'this is also nices', '0', 1, 1, '1', '2019-11-27 23:13:30', '2019-11-27 23:13:30'),
-(5, 'jp1257', 1, 1, 1, 1, 'sergsegser gse rgerg rb xr hxn r', '0', 1, 1, '1', '2019-11-27 23:17:46', '2019-11-27 23:17:46'),
-(6, 'jpnew services', 1, 1, 1, 1, 'srts gsrtb srg srg', '0', 1, 1, '1', '2019-11-27 23:19:57', '2019-11-27 23:19:57');
+INSERT INTO `ls_services` (`sid`, `sname`, `cid`, `scid`, `pcid`, `stateid`, `sdetails`, `partnerprice`, `sp_status`, `uid`, `updateuid`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Window AC', 13, 9, 6, 1, 'Window AC', '250', '0', 1, 1, '1', '2019-11-29 19:04:27', '2019-11-29 19:04:27'),
+(3, 'Test', 14, 36, 49, 1, 'Service', '234', '0', 1, 1, '1', '2019-11-29 19:08:58', '2019-11-29 19:08:58'),
+(4, 'Service', 13, 9, 7, 1, 'Service', '344', '0', 1, 1, '1', '2019-11-29 19:11:00', '2019-11-29 19:11:00'),
+(5, 'Upto 50 Inch', 13, 12, 56, 1, 'Upto 50 Inch', '225', '0', 1, 1, '1', '2019-11-29 20:02:44', '2019-11-29 20:02:44');
 
 -- --------------------------------------------------------
 
@@ -539,10 +611,10 @@ CREATE TABLE `ls_service_cities` (
 --
 
 INSERT INTO `ls_service_cities` (`scityid`, `sid`, `cityid`, `cityname`, `created_at`, `updated_at`) VALUES
-(1, 3, 4, 'Mumbai', '2019-11-27 23:10:13', '2019-11-27 23:10:13'),
-(2, 4, 4, 'Mumbai', '2019-11-27 23:13:30', '2019-11-27 23:13:30'),
-(3, 5, 4, 'Mumbai', '2019-11-27 23:17:46', '2019-11-27 23:17:46'),
-(4, 6, 4, 'Mumbai', '2019-11-27 23:19:57', '2019-11-27 23:19:57');
+(1, 1, 1, 'Bhavnagar', '2019-11-29 19:04:27', '2019-11-29 19:04:27'),
+(3, 3, 1, 'Bhavnagar', '2019-11-29 19:08:58', '2019-11-29 19:08:58'),
+(4, 4, 1, 'Bhavnagar', '2019-11-29 19:11:00', '2019-11-29 19:11:00'),
+(5, 5, 1, 'Bhavnagar', '2019-11-29 20:02:44', '2019-11-29 20:02:44');
 
 -- --------------------------------------------------------
 
@@ -563,10 +635,10 @@ CREATE TABLE `ls_service_images` (
 --
 
 INSERT INTO `ls_service_images` (`siid`, `siImage`, `sid`, `created_at`, `updated_at`) VALUES
-(1, '1574867413bus_topology_1.PNG', 3, '2019-11-27 23:10:14', '2019-11-27 23:10:14'),
-(2, '1574867610bus_topology_1.PNG', 4, '2019-11-27 23:13:31', '2019-11-27 23:13:31'),
-(3, '1574867866HRS_2-1.JPG', 5, '2019-11-27 23:17:46', '2019-11-27 23:17:46'),
-(4, '1574867997bus_topology_1.PNG', 6, '2019-11-27 23:19:58', '2019-11-27 23:19:58');
+(1, '1575029067logo-buzz.png', 1, '2019-11-29 19:04:27', '2019-11-29 19:04:27'),
+(3, '1575029338logo-buzz.png', 3, '2019-11-29 19:08:58', '2019-11-29 19:08:58'),
+(4, '1575029460logo-buzz.png', 4, '2019-11-29 19:11:00', '2019-11-29 19:11:00'),
+(5, '1575032564logo-buzz.png', 5, '2019-11-29 20:02:44', '2019-11-29 20:02:44');
 
 -- --------------------------------------------------------
 
@@ -588,10 +660,9 @@ CREATE TABLE `ls_service_localities` (
 --
 
 INSERT INTO `ls_service_localities` (`slocalitie_id`, `sid`, `localitieid`, `localitie_name`, `created_at`, `updated_at`) VALUES
-(1, 3, 1, 'Ambawadi', '2019-11-27 23:10:14', '2019-11-27 23:10:14'),
-(2, 4, 1, 'Ambawadi', '2019-11-27 23:13:31', '2019-11-27 23:13:31'),
-(3, 5, 1, 'Ambawadi', '2019-11-27 23:17:46', '2019-11-27 23:17:46'),
-(4, 6, 1, 'Ambawadi', '2019-11-27 23:19:58', '2019-11-27 23:19:58');
+(1, 1, 3, 'Kaliyabid', '2019-11-29 19:04:27', '2019-11-29 19:04:27'),
+(3, 4, 2, 'Ghogha Circle', '2019-11-29 19:11:00', '2019-11-29 19:11:00'),
+(4, 5, 2, 'Ghogha Circle', '2019-11-29 20:02:44', '2019-11-29 20:02:44');
 
 -- --------------------------------------------------------
 
@@ -614,12 +685,9 @@ CREATE TABLE `ls_service_prices` (
 --
 
 INSERT INTO `ls_service_prices` (`spid`, `sid`, `cityid`, `sprice`, `updateuid`, `created_at`, `updated_at`) VALUES
-(1, 1, 2, '200', 2, NULL, NULL),
-(2, 2, 2, '2003', 2, NULL, NULL),
-(3, 3, 4, '1243', 1, '2019-11-27 23:10:14', '2019-11-27 23:10:14'),
-(4, 4, 4, '2132', 1, '2019-11-27 23:13:32', '2019-11-27 23:13:32'),
-(5, 5, 4, '2132', 1, '2019-11-27 23:17:46', '2019-11-27 23:17:46'),
-(6, 6, 4, '1243', 1, '2019-11-27 23:19:58', '2019-11-27 23:19:58');
+(1, 1, 1, '300', 1, '2019-11-29 19:04:27', '2019-11-29 19:04:27'),
+(3, 4, 1, '260', 1, '2019-11-29 19:11:00', '2019-11-29 19:11:00'),
+(4, 5, 1, '300', 1, '2019-11-29 20:02:44', '2019-11-29 20:02:44');
 
 -- --------------------------------------------------------
 
@@ -642,11 +710,9 @@ CREATE TABLE `ls_service_specialprices` (
 --
 
 INSERT INTO `ls_service_specialprices` (`sp_priceid`, `sid`, `cityid`, `sp_specialprice`, `updateuid`, `created_at`, `updated_at`) VALUES
-(1, 1, 2, '2001', 2, NULL, NULL),
-(2, 3, 4, '1200', 1, '2019-11-27 23:10:15', '2019-11-27 23:10:15'),
-(3, 4, 4, '12002', 1, '2019-11-27 23:13:32', '2019-11-27 23:13:32'),
-(4, 5, 4, '12002', 1, '2019-11-27 23:17:46', '2019-11-27 23:17:46'),
-(5, 6, 4, '12002', 1, '2019-11-27 23:19:58', '2019-11-27 23:19:58');
+(1, 1, 1, '275', 1, '2019-11-29 19:04:27', '2019-11-29 19:04:27'),
+(3, 4, 1, '245', 1, '2019-11-29 19:11:00', '2019-11-29 19:11:00'),
+(4, 5, 1, '250', 1, '2019-11-29 20:02:44', '2019-11-29 20:02:44');
 
 -- --------------------------------------------------------
 
@@ -705,12 +771,48 @@ CREATE TABLE `ls_sub_categories` (
 --
 
 INSERT INTO `ls_sub_categories` (`scid`, `scname`, `cid`, `sucat_description`, `sub_img`, `created_at`, `updated_at`) VALUES
-(1, 'SubCatogry !', 1, 'This is the nice sub category', 'https://image.flaticon.com/icons/svg/148/148715.svg', '2019-11-22 08:00:00', NULL),
-(2, 'SubCategory 2', 1, 'This is also nice', 'https://image.flaticon.com/icons/svg/148/148715.svg', NULL, NULL),
-(3, 'SubCategory 3', 1, 'This is also nice 1', 'https://image.flaticon.com/icons/svg/148/148715.svg', NULL, NULL),
-(4, 'Subcategory 11', 3, 'this is the toyota', 'https://image.flaticon.com/icons/svg/148/148715.svg', '2019-11-22 08:00:00', NULL),
-(5, 'Subcategory 22', 3, 'this is the toyota', 'https://image.flaticon.com/icons/svg/148/148715.svg', NULL, NULL),
-(6, 'subcategory 33', 3, 'this is the toyota', 'https://image.flaticon.com/icons/svg/148/148715.svg', '2019-11-22 08:00:00', NULL);
+(9, 'AC', 13, NULL, NULL, '2019-11-29 14:33:26', '2019-11-29 14:33:26'),
+(10, 'Refrigerator', 13, NULL, NULL, '2019-11-29 14:35:29', '2019-11-29 14:35:29'),
+(11, 'Washing Machine', 13, NULL, NULL, '2019-11-29 14:36:05', '2019-11-29 14:36:05'),
+(12, 'TV', 13, NULL, NULL, '2019-11-29 14:36:17', '2019-11-29 14:36:17'),
+(13, 'DTH', 13, NULL, NULL, '2019-11-29 14:36:30', '2019-11-29 14:36:30'),
+(14, 'RO', 13, NULL, NULL, '2019-11-29 14:36:42', '2019-11-29 14:36:42'),
+(16, 'Gas/ Stove', 13, NULL, NULL, '2019-11-29 14:37:30', '2019-11-29 14:37:30'),
+(17, 'Air Collier', 13, NULL, NULL, '2019-11-29 14:38:10', '2019-11-29 14:38:10'),
+(18, 'Mixer', 13, NULL, NULL, '2019-11-29 14:38:20', '2019-11-29 14:38:20'),
+(19, 'Grinder', 13, NULL, NULL, '2019-11-29 14:38:39', '2019-11-29 14:38:39'),
+(20, 'Iron', 13, NULL, NULL, '2019-11-29 14:39:19', '2019-11-29 14:39:19'),
+(21, 'Flour Mill', 13, NULL, NULL, '2019-11-29 14:39:49', '2019-11-29 14:39:49'),
+(22, 'Aquarium', 13, NULL, NULL, '2019-11-29 14:41:17', '2019-11-29 14:41:17'),
+(23, 'Sofa', 15, NULL, NULL, '2019-11-29 15:24:47', '2019-11-29 15:24:47'),
+(24, 'Chair', 15, NULL, NULL, '2019-11-29 15:26:19', '2019-11-29 15:26:19'),
+(25, 'Car', 15, NULL, NULL, '2019-11-29 15:26:26', '2019-11-29 15:26:26'),
+(26, 'Dry cleaning', 15, NULL, NULL, '2019-11-29 15:26:42', '2019-11-29 15:26:42'),
+(27, 'Water Tank', 15, NULL, NULL, '2019-11-29 15:26:55', '2019-11-29 15:26:55'),
+(28, 'Full Home - Deep Cleaning', 15, NULL, NULL, '2019-11-29 15:27:15', '2019-11-29 15:27:15'),
+(29, 'Drilling', 21, NULL, NULL, '2019-11-29 15:27:37', '2019-11-29 15:27:37'),
+(30, 'S.S', 21, NULL, NULL, '2019-11-29 15:27:47', '2019-11-29 15:27:47'),
+(31, 'M.S', 21, NULL, NULL, '2019-11-29 15:27:56', '2019-11-29 15:27:56'),
+(32, 'Aluminum', 21, NULL, NULL, '2019-11-29 15:28:14', '2019-11-29 15:28:14'),
+(33, 'Glassdoor', 21, NULL, NULL, '2019-11-29 15:28:25', '2019-11-29 15:28:25'),
+(34, 'Shutter', 21, NULL, NULL, '2019-11-29 15:28:33', '2019-11-29 15:28:33'),
+(35, 'Carpenter', 14, NULL, NULL, '2019-11-29 15:28:52', '2019-11-29 15:28:52'),
+(36, 'Electrician', 14, NULL, NULL, '2019-11-29 15:29:04', '2019-11-29 15:29:04'),
+(37, 'Plumber', 14, NULL, NULL, '2019-11-29 15:29:15', '2019-11-29 15:29:15'),
+(38, 'Salon', 18, NULL, NULL, '2019-11-29 15:30:02', '2019-11-29 15:30:02'),
+(39, 'Massage', 18, NULL, NULL, '2019-11-29 15:30:24', '2019-11-29 15:30:24'),
+(40, 'Fitness', 18, NULL, NULL, '2019-11-29 15:30:36', '2019-11-29 15:30:36'),
+(41, 'Beauty parlor', 18, NULL, NULL, '2019-11-29 15:31:12', '2019-11-29 15:31:12'),
+(42, 'Painting', 17, NULL, NULL, '2019-11-29 15:31:31', '2019-11-29 15:31:31'),
+(43, 'Pest Control', 17, NULL, NULL, '2019-11-29 15:31:45', '2019-11-29 15:31:45'),
+(44, 'Car AC', 16, NULL, NULL, '2019-11-29 15:56:37', '2019-11-29 15:56:37'),
+(45, 'Computer', 19, NULL, NULL, '2019-11-29 19:47:11', '2019-11-29 19:47:11'),
+(46, 'Laptop', 19, NULL, NULL, '2019-11-29 19:47:27', '2019-11-29 19:47:27'),
+(47, 'Printer', 19, NULL, NULL, '2019-11-29 19:47:44', '2019-11-29 19:47:44'),
+(48, 'CCTV', 19, NULL, NULL, '2019-11-29 19:47:58', '2019-11-29 19:47:58'),
+(49, 'Car Puncture', 16, NULL, NULL, '2019-11-29 19:49:46', '2019-11-29 19:49:46'),
+(50, 'Event', 20, NULL, NULL, '2019-11-29 19:50:03', '2019-11-29 19:50:03'),
+(51, 'Photography', 20, NULL, NULL, '2019-11-29 19:50:26', '2019-11-29 19:50:26');
 
 -- --------------------------------------------------------
 
@@ -764,7 +866,10 @@ CREATE TABLE `ls_user_registrations` (
 
 INSERT INTO `ls_user_registrations` (`uid`, `uname`, `umobileno`, `mobileno_verified_at`, `otp`, `ugender`, `uemail`, `email_verified_at`, `password`, `uprofilepic`, `urefferalCode`, `stateid`, `cityid`, `localitie_id`, `usertype`, `is_active`, `forget_password_token`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'keyur d vamja', '9512247271', NULL, '715422', 'Male', 'keyur@yopmail.com', NULL, '$2y$10$O5dD9ASQvT9VFrqq/YrDROT0o.2ZSp.zOGygW7WAuwqn/3fEDPiee', 'https://keenthemes.com/metronic/themes/metronic/theme/default/demo1/dist/assets/media/users/100_4.jpg', NULL, 1, 1, 1, '1', '1', NULL, NULL, '2019-11-11 16:43:24', '2019-11-11 17:04:21'),
-(2, 'jigo goyani', '9998655262', NULL, NULL, 'Male', 'admin@yopmail.com', '2019-11-16 08:00:00', '$2y$12$xto/UMuSkNIUOgBHfzkROesE8mtg8nopQ32Nz.MKtJVwfWbRSRuFa', 'https://keenthemes.com/metronic/themes/metronic/theme/default/demo1/dist/assets/media/users/100_4.jpg', NULL, 1, 1, NULL, '0', '1', NULL, NULL, '2019-11-16 08:00:00', NULL);
+(2, 'jigo goyani', '9998655262', NULL, NULL, 'Male', 'admin@yopmail.com', '2019-11-16 08:00:00', '$2y$12$xto/UMuSkNIUOgBHfzkROesE8mtg8nopQ32Nz.MKtJVwfWbRSRuFa', 'https://keenthemes.com/metronic/themes/metronic/theme/default/demo1/dist/assets/media/users/100_4.jpg', NULL, 1, 1, NULL, '0', '1', NULL, NULL, '2019-11-16 08:00:00', NULL),
+(3, 'Vivek', '2525258585', NULL, '778411', 'Male', 'vivek@mail.com', NULL, '$2y$10$oVm/qzvcDqolmHVH1KcEteLiB28/mHNW3Z5x/uUMwtYtHDus5BWLS', NULL, NULL, 1, 2, NULL, '1', '0', NULL, NULL, '2019-11-29 14:56:27', '2019-11-29 14:56:27'),
+(4, 'Kiran', '8585854545', NULL, '686152', 'Male', 'kira@mail.com', NULL, '$2y$10$V1o68Dwx.xaLe1qbB8z6kOP4PhtLd4eifsMn1gGiCdxIbOSHu/C5y', NULL, NULL, 1, 2, NULL, '1', '0', NULL, NULL, '2019-11-29 15:11:17', '2019-11-29 15:11:17'),
+(5, 'Amit Raman', '9585263221', NULL, '498817', 'Male', 'amit@mail.com', NULL, '$2y$10$WNPUDLuqMcmdaejJcabyI.QPnSJSobsmLgrhSw1sBjPP5JFPcaD3u', NULL, NULL, 1, 1, NULL, '1', '0', NULL, NULL, '2019-11-29 16:35:34', '2019-11-29 16:35:34');
 
 -- --------------------------------------------------------
 
@@ -1432,7 +1537,7 @@ ALTER TABLE `ls_bank_details`
 -- AUTO_INCREMENT for table `ls_categories`
 --
 ALTER TABLE `ls_categories`
-  MODIFY `cid` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `cid` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `ls_cities`
@@ -1450,7 +1555,7 @@ ALTER TABLE `ls_hardware`
 -- AUTO_INCREMENT for table `ls_localities`
 --
 ALTER TABLE `ls_localities`
-  MODIFY `localitie_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `localitie_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `ls_offers`
@@ -1534,7 +1639,7 @@ ALTER TABLE `ls_permissions`
 -- AUTO_INCREMENT for table `ls_product_categories`
 --
 ALTER TABLE `ls_product_categories`
-  MODIFY `pcid` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `pcid` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT for table `ls_promo_codes`
@@ -1564,19 +1669,19 @@ ALTER TABLE `ls_sales_executives`
 -- AUTO_INCREMENT for table `ls_services`
 --
 ALTER TABLE `ls_services`
-  MODIFY `sid` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `sid` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `ls_service_cities`
 --
 ALTER TABLE `ls_service_cities`
-  MODIFY `scityid` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `scityid` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `ls_service_images`
 --
 ALTER TABLE `ls_service_images`
-  MODIFY `siid` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `siid` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `ls_service_localities`
@@ -1588,13 +1693,13 @@ ALTER TABLE `ls_service_localities`
 -- AUTO_INCREMENT for table `ls_service_prices`
 --
 ALTER TABLE `ls_service_prices`
-  MODIFY `spid` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `spid` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `ls_service_specialprices`
 --
 ALTER TABLE `ls_service_specialprices`
-  MODIFY `sp_priceid` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `sp_priceid` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `ls_states`
@@ -1612,7 +1717,7 @@ ALTER TABLE `ls_subadmin_permissions`
 -- AUTO_INCREMENT for table `ls_sub_categories`
 --
 ALTER TABLE `ls_sub_categories`
-  MODIFY `scid` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `scid` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `ls_user_addresses`
@@ -1624,7 +1729,7 @@ ALTER TABLE `ls_user_addresses`
 -- AUTO_INCREMENT for table `ls_user_registrations`
 --
 ALTER TABLE `ls_user_registrations`
-  MODIFY `uid` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `uid` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `ls_videos`
