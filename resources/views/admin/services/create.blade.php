@@ -56,11 +56,11 @@
                         <label for="pcname"> Service Details</label>
                         <textarea class="form-control" name="sdetail" class="form-control @if($errors->has('sdetail')) is-invalid @endif"  style="margin-bottom:5px;" id="exampleTextarea" rows="3" required>{{ old('locality') }}</textarea>
 						<label for="cname">Locality Name</label>
-						<select class="form-control kt-select2 @if($errors->has('locality')) is-invalid @endif" id="locality" name="locality" required>
+						<select class="form-control kt-select2 @if($errors->has('locality')) is-invalid @endif" id="locality" name="locality[]" required multiple="multiple">
 							<option disabled selected value>Select Locality</option>
 						</select>
                         <label for="cname">Price</label>
-					    <input style="margin-bottom:5px;" type="text" style="" class="form-control @if($errors->has('price')) is-invalid @endif" id="price" name="price" placeholder="Enter Price " value="{{ old('price') }}" required>                    
+						<input style="margin-bottom:5px;" type="text" style="" class="form-control @if($errors->has('price')) is-invalid @endif" id="price" name="price" placeholder="Enter Price " value="{{ old('price') }}" required>                    
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>	
                     <div class="form-group  col-lg-6 col-md-6">                
@@ -92,7 +92,9 @@
 					@enderror
                     <label for="cname">Special Price</label>
 					<input style="margin-bottom:5px;" type="text" style="" class="form-control @if($errors->has('sprice')) is-invalid @endif" id="sprice" name="sprice" placeholder="Enter Special Service" value="{{ old('sprice') }}">                    
-                    </div>
+					<label for="partnerprice">Partner Price</label>
+					<input style="margin-bottom:5px;" type="text" style="" class="form-control @if($errors->has('partnerprice')) is-invalid @endif" id="partnerprice" name="partnerprice" placeholder="Enter Partner Price " value="{{ old('partnerprice') }}" required>
+					</div>
                 </div>
             </form>
 		</div>

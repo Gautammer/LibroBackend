@@ -106,6 +106,7 @@
 				<thead>
 					<tr>
 						<th>No.</th>
+						<th>Category Image</th>
 						<th>Category name</th>
 						<th>Category city</th>
 						<th>Date</th>
@@ -116,6 +117,16 @@
 					@foreach($categories as $k => $cat)
 					<tr>
 						<td>{{ $k + 1 }}</td>
+						<td>
+							<div class="kt-widget__media">
+								<a href="{{ asset('images/category') }}/{{ $cat->cat_img }}">
+									<img class="kt-widget__img kt-hidden-" src="{{ asset('images/category') }}/{{ $cat->cat_img }}" alt="image" style="width: 5rem; border-radius: 5px;">
+								</a>
+								<div class="kt-widget__pic kt-widget__pic--warning kt-font-warning kt-font-boldest kt-hidden">
+									TF
+								</div>
+							</div>
+						</td>
 						<td>{{ $cat->cname }}</td>
 						@foreach($cat->cityid as $ct)
 						<td>{{ $ct->cityname }}</td>

@@ -28,17 +28,30 @@ class SubCategoryController extends Controller
 	    {
 	        $validator = Validator::make($request->all(), [
 	        	'cid'   => 'required:ls_sub_categories',
-	            'scname'   => 'required|unique:ls_sub_categories',
+				'scname'   => 'required|unique:ls_sub_categories',
+				'scimg'   => 'required',
 	        ],
 	        [
 	        	'cid.required' => 'The Category name is required.',
 	            'scname.required' => 'The SubCategory name is required.',
-	            'scname.unique' => 'The SubCategory name is Already Exist!!!.',
+				'scname.unique' => 'The SubCategory name is Already Exist!!!.',
+				'scimg.required' => 'The SubCategory image is required.',
 	        ])->validate();
 	        // return $request;
-	        // exit();
+			// exit();
+			
+			// Upload SubCategory Image
+			$file = $request->file('scimg');
+			$FileName = time() . $file->getClientOriginalName();
+			$destinationPath = 'images/subcategory';
+			$file->move($destinationPath,$FileName);
+			
+			$create = new lsSubCategory;
+			$create->scname =  $request->scname;
+			$create->cid = $request->cid;
+			$create->sub_img = $FileName;
+			$create->save();
 
-	        $create = lsSubCategory::create($request->all());
 	        return redirect()->route('admin.SubCategory.index');
 	    }
 	public function edit($id)

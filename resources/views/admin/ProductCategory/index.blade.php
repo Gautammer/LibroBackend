@@ -100,7 +100,8 @@
 				<thead>
 					<tr>
 						<th>No.</th>
-						<th>ProductCategory name</th>
+						<th>Product Category Image</th>
+						<th>Product Category name</th>
 						<th>Date</th>
 						<th>Action</th>
 					</tr>
@@ -109,6 +110,16 @@
 					@foreach($Productcategories as $k => $pcat)
 					<tr>
 						<td>{{ $k + 1 }}</td>
+						<td>
+							<div class="kt-widget__media">
+								<a href="{{ asset('images/productcategory') }}/{{ $pcat->pcimg }}">
+									<img class="kt-widget__img kt-hidden-" src="{{ asset('images/productcategory') }}/{{ $pcat->pcimg }}" alt="image" style="width: 5rem; border-radius: 5px;">
+								</a>
+								<div class="kt-widget__pic kt-widget__pic--warning kt-font-warning kt-font-boldest kt-hidden">
+									TF
+								</div>
+							</div>
+						</td>
 						<td>{{ $pcat->pcname }}</td>
 						<td>{{ $pcat->created_at }}</td>
 						<td>

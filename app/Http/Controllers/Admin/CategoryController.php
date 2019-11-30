@@ -37,18 +37,26 @@ class CategoryController extends Controller
         // return $request;
         $validator = Validator::make($request->all(), [
             'cname'   => 'required|unique:ls_categories',
+            'cimg'   => 'required',
             // 'cityid'   => 'required',
         ],
         [
             'cname.required' => 'The Category name is required.',
             // 'cityid.required' => 'The City name is required.',
             'cname.unique' => 'The Category name is Already Exist!!!.',
+            'cimg.required' => 'The Category Image is required.',
         ])->validate();
        
+        // Upload Category Image
+        $file = $request->file('cimg');
+        $FileName = time() . $file->getClientOriginalName();
+        $destinationPath = 'images/category';
+        $file->move($destinationPath,$FileName);
         
         $create = new lsCategory;
         $create->cname =  $request->cname;
         $create->cityid = 1;
+        $create->cat_img = $FileName;
         // $create->cityid = 1;
         $create->save();
         // return $create;

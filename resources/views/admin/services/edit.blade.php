@@ -41,85 +41,63 @@
 				</div>
 			</div>
 			<!--begin::Form-->
-			<form class="kt-form" action="" method="post">
-				<div class="kt-portlet__body">
-					<div class="form-group m-0">
-						@csrf
-						<label for="sname">Service Name</label>
-						<input type="text" class="form-control" id="sname" name="sname" placeholder="Enter Service Name" value=""><br>
-
-						<label for="category">Category</label>
-						<select class="form-control" id="category">
-							<option>Select Category</option>
-							<option>Electonics</option>
-							<option>Home Asse.</option>
-							
-						</select><br>
-						
-
-						<label for="subcategory">Sub Category</label>
-						<select class="form-control" id="subcategory">
-							<option>Select sub category</option>
-							<option>AC</option>
-							<option>Wall</option>
-							
-						</select><br>
-						
-
-						<label for="product">Product</label>
-						<select class="form-control" id="product">
-							<option>Select Product</option>
-							<option>Lg</option>
-							<option>Jio</option>
-							
-						</select><br>
-						
-						<label for="state">State</label>
-						<select class="form-control" id="state">
-							<option>Select State</option>
-							<option>Ahemdabad</option>
-							<option>Surat</option>
-							
-						</select><br>
-
-						<label for="sdetails">Service Details</label>
-						<textarea class="form-control" id="sdetails" name="sdetails" rows="3" placeholder="Enter Service Details" value=""></textarea><br>
-
-						<label for="spstatus">Special Status</label>
-						<select class="form-control" id="spstatus">
-							<option>Select Status</option>
-							<option>0</option>
-							<option>1</option>
-							
-						</select><br>
-
-						<label for="sstatus">Service Status</label>
-						<select class="form-control" id="sstatus">
-							<option>Select Service Status</option>
-							<option>Active</option>
-							<option>Deactive</option>
-							
-						</select><br>
-
-						<label class="col-lg-3 col-form-label">Select Image</label>
-
-						<div class="custom-file">
-							<input type="file" class="custom-file-input" id="customFile">
-							<label class="custom-file-label selected" for="customFile">Select Image File</label>
+			<div class="kt-portlet__body">
+					<form method="POST" class="kt-form" action="{{ route('admin.services.store') }}" enctype="multipart/form-data" >
+					@csrf
+						<div class="row">
+							<div class="form-group  col-lg-6 col-md-6" >
+								<label for="pcname"> Service Name</label>
+								<input style="margin-bottom:5px;" type="text" style="" class="form-control @if($errors->has('sname')) is-invalid @endif" id="sname" name="sname" placeholder="Enter Service Name" value="{{ $service->sname }}" required>                    
+								<label for="cname">SubCategory Name</label>
+								<select class="form-control kt-select2 @if($errors->has('cid')) is-invalid @endif" id="subcat" name="subcat" required>
+										<option disabled selected value>Select SubCategory Name</option>
+								</select>
+								<!-- <input style="margin-bottom:5px;" type="text" style="" class="form-control @if($errors->has('subcat')) is-invalid @endif" id="subcat" name="subcat" placeholder="Enter Subcategory Name" value="{{ old('subcat') }}" required>                     -->
+								<label for="pcname"> Service Details</label>
+								<textarea class="form-control" name="sdetail" class="form-control @if($errors->has('sdetail')) is-invalid @endif"  style="margin-bottom:5px;" id="exampleTextarea" rows="3" required>{{ $service->sdetails }}</textarea>
+								<label for="cname">Locality Name</label>
+								<select class="form-control kt-select2 @if($errors->has('locality')) is-invalid @endif" id="locality" name="locality[]" required multiple="multiple">
+									<option disabled selected value>Select Locality</option>
+								</select>
+								<label for="cname">Price</label>
+								<input style="margin-bottom:5px;" type="text" style="" class="form-control @if($errors->has('price')) is-invalid @endif" id="price" name="price" placeholder="Enter Price " value="" required>                    
+								<button type="submit" class="btn btn-primary">Submit</button>
+							</div>	
+							<div class="form-group  col-lg-6 col-md-6">                
+							<label for="cname">Category Name</label>
+							<select class="form-control kt-select2 @if($errors->has('cid')) is-invalid @endif" id="cname" name="cname" required>
+										<option disabled selected value>Selecte Category Name</option>				
+										@foreach($category as $cat)
+										<option value="{{ $cat->cid }}">{{ $cat->cname }}</option>				
+										@endforeach
+							</select>
+							<!-- <input style="margin-bottom:5px;" type="text" style="" class="form-control @if($errors->has('cname')) is-invalid @endif" id="cname" name="cname" placeholder="Enter Category Name" value="{{ old('cname') }}" required>                     -->
+							<label for="cname">Product Category</label>
+							<select class="form-control kt-select2 @if($errors->has('proname')) is-invalid @endif" id="proname" name="proname" required>
+								<option disabled selected value>Select Product Category</option>
+							</select>
+							<label for="cname">City Name</label>
+							<select class="form-control kt-select2 @if($errors->has('cityname')) is-invalid @endif" id="cityname" name="cityname" required>
+								<option disabled selected value>Selecte City</option>				
+								@foreach($cities as $city)
+								<option value="{{ $city->cityid }}">{{ $city->cityname }}</option>				
+								@endforeach
+							</select>
+							<label for="cname" style=""> Images</label>
+							<input style="margin-bottom:5px;" name="img_upload[]" type="file" style="" class="form-control @if($errors->has('img_upload[]')) is-invalid @endif" id="img" name="img_upload[]" placeholder="Upload Image" accept="image/*" multiple required/>                    
+							@error('img_upload[]')
+								<span class="invalid-feedback" role="alert">
+								  <strong>{{ $message }}</strong>
+								</span>
+							@enderror
+							<label for="cname">Special Price</label>
+							<input style="margin-bottom:5px;" type="text" style="" class="form-control @if($errors->has('sprice')) is-invalid @endif" id="sprice" name="sprice" placeholder="Enter Special Service" value="{{ old('sprice') }}">                    
+							<label for="partnerprice">Partner Price</label>
+					<input style="margin-bottom:5px;" type="text" style="" class="form-control @if($errors->has('partnerprice')) is-invalid @endif" id="partnerprice" name="partnerprice" placeholder="Enter Partner Price " value="{{ $service->partnerprice }}" required>
+							</div>
 						</div>
-							<span class="form-text text-muted">Max file size is 1MB and max number of files is 5.</span>
-						<!-- </div> -->
-						<!-- <div class="form-group row"> -->
-							
-					<!-- </div> -->
-					<div class="kt-portlet__foot">
-						<div class="kt-form__actions">
-							<button type="submit" class="btn btn-label-brand">Submit</button>
-							<a href="{{ URL::previous() }}" class="btn btn-secondary">Cancel</a>
-						</div>
-					</div>
+					</form>
 				</div>
-				</form>
 			<!--end::Form-->			
 		</div>
 		<!--end::Portlet-->
@@ -137,5 +115,53 @@
 @parent
 
 <script type="text/javascript" src="{{ asset('assets/js/admin/category.js') }}"></script>
+<script>
+	$('#cname').change(function() {
+		var id = $(this).find(':selected').attr('value');
+		var url = '{{ route("admin.services.subCategories", ":id") }}';
+		url = url.replace(':id', id);
+		$.ajax({
+			type: 'GET',
+			url: url,
+			dataType: "text",
+			success: function(data) {
+				
+				$('#subcat').html(data);
+			}
+		});
+	});
+
+	$('#subcat').change(function() {
+		var id = $(this).find(':selected').attr('value');
+		var url = '{{ route("admin.services.productCategory", ":id") }}';
+		url = url.replace(':id', id);
+		$.ajax({
+			type: 'GET',
+			url: url,
+			dataType: "text",
+			success: function(data) {
+				console.log(data);
+				
+				$('#proname').html(data);
+			}
+		});
+	});
+
+	$('#cityname').change(function() {
+		var id = $(this).val();
+		var url = '{{ route("admin.services.getCities", ":id") }}';
+		url = url.replace(':id', id);
+		$.ajax({
+			type: 'GET',
+			url: url,
+			dataType: "text",
+			success: function(data) {
+				console.log(data);
+				
+				$('#locality').html(data);
+			}
+		});
+	});
+</script>
 	
 @endsection

@@ -29,17 +29,31 @@ class ProductCategoryController extends Controller
 	    {
 	        $validator = Validator::make($request->all(), [
 	        	'scid'   => 'required:ls_sub_categories',
-	            'pcname'   => 'required|unique:ls_product_categories',
+				'pcname'   => 'required|unique:ls_product_categories',
+				'pcimg'   => 'required',
 	        ],
 	        [
 	        	'scid.required' => 'The SubCategory name is required.',
 	            'pcname.required' => 'The ProductCategory name is required.',
-	            'pcname.unique' => 'The ProductCategory name is Already Exist!!!.',
+				'pcname.unique' => 'The ProductCategory name is Already Exist!!!.',
+				'pcimg.required' => 'The Product Category image is required.',
 	        ])->validate();
 	        // return $request;
 	        // exit();
-	        // return $request;
-	        $create = lsProductCategory::create($request->all());
+			// return $request;
+			
+			// Upload SubCategory Image
+			$file = $request->file('pcimg');
+			$FileName = time() . $file->getClientOriginalName();
+			$destinationPath = 'images/productcategory';
+			$file->move($destinationPath,$FileName);
+			
+			$create = new lsProductCategory;
+			$create->pcname =  $request->pcname;
+			$create->scid = $request->scid;
+			$create->pcimg = $FileName;
+			$create->save();
+
 	        return redirect()->route('admin.ProductCategory.index');
 	    }
 	public function edit($id)

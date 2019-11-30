@@ -100,6 +100,7 @@
 				<thead>
 					<tr>
 						<th>No.</th>
+						<th>SubCategory Image</th>
 						<th>SubCategory name</th>
 						<th>Date</th>
 						<th>Action</th>
@@ -109,6 +110,16 @@
 					@foreach($Subcategories as $k => $scat)
 					<tr>
 						<td>{{ $k + 1 }}</td>
+						<td>
+							<div class="kt-widget__media">
+								<a href="{{ asset('images/subcategory') }}/{{ $scat->sub_img }}">
+									<img class="kt-widget__img kt-hidden-" src="{{ asset('images/subcategory') }}/{{ $scat->sub_img }}" alt="image" style="width: 5rem; border-radius: 5px;">
+								</a>
+								<div class="kt-widget__pic kt-widget__pic--warning kt-font-warning kt-font-boldest kt-hidden">
+									TF
+								</div>
+							</div>
+						</td>
 						<td>{{ $scat->scname }}</td>
 						<td>{{ $scat->created_at }}</td>
 						<td>

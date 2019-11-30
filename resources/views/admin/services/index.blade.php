@@ -141,7 +141,7 @@
 						<td>{{ $lser->created_at }}</td>
 						
 						<td>
-							<a href="{{ route('admin.services.edit',1) }}" class="btn btn-label-info">
+							<a href="{{ route('admin.services.edit',$lser->sid) }}" class="btn btn-label-info">
 								<i class="flaticon-edit p-0"></i>
 							</a>
 							

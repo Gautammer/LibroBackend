@@ -41,7 +41,7 @@
 				</div>
 			</div>
 			<!--begin::Form-->
-			<form class="kt-form" action="{{ route('admin.ProductCategory.store') }}" method="post">
+			<form class="kt-form" action="{{ route('admin.ProductCategory.store') }}" method="post" enctype="multipart/form-data">
 				<div class="kt-portlet__body">
 					<div class="form-group m-0">
 						@csrf
@@ -63,7 +63,14 @@
 					@if($errors->has('scid'))
 							<div class="invalid-feedback">{{ $errors->first('scid') }} </div>
 						@endif
-						
+						<br>
+						<label for="pcimg" style="margin-top: 3px;">Product Category Image</label>
+						<input style="margin-bottom:5px;" type="file" style="" class="form-control @if($errors->has('pcimg')) is-invalid @endif" id="pcimg" name="pcimg" accept="image/*"/>                    
+						@error('pcimg')
+							<span class="invalid-feedback" role="alert">
+								{{ $message }}
+							</span>
+						@enderror
 					</div>
 					
 				</div>

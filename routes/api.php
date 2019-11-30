@@ -79,7 +79,7 @@ Route::post('/testAadhar',"Api\TestDataController@getAadhar");
 Route::post('/testUserData',"Api\UserDataController@getUserCatData");
 Route::post('/partnerProfile',"Api\TestDataController@getPartnerProfile");
 Route::post('/storePartnerProfile',"Api\TestDataController@storePartnerData");
-Route::psot('/showservice', 'Api\TestDataController@showservice');
+Route::post('/showservice', 'Api\TestDataController@showservice');
 
 
 // Route::post('/getServices',"Api\UserDataController@getServices");

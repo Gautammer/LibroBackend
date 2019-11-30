@@ -115,7 +115,7 @@ class ServiceController extends Controller
        $service->stateid = 1;
        $service->updateuid = 1;
        $service->uid = 1;
-
+       $service->partnerprice = $request->input('partnerprice'); 
        $service->save();
 
        $cityid = DB::table('ls_cities')->select('cityname')->where('cityid',$request->cityname)->first();
@@ -130,11 +130,19 @@ class ServiceController extends Controller
        $service_image->siimage = implode(',',$data);
        $service_image->save();
 
-       $locality_id = DB::table('ls_localities')->select('localitie_name')->where('localitie_id',$request->locality)->first();
        $service_localities = new lsServiceLocality;
+       $getCitiesName = lsLocality::whereIn('localitie_id',$request->locality)->select('localitie_name')->get();
+         // return $getCitiesName;
+       $local = $request->get('locality');
+
+       $localityName = [];
+       foreach ($getCitiesName as $key) {
+         $localityName[] = $key->localitie_name;
+       }
+
        $service_localities->sid = $service->sid;
-       $service_localities->localitie_name = $locality_id->localitie_name;
-       $service_localities->localitieid = $request->locality;
+       $service_localities->localitie_name = implode(',', $localityName);
+       $service_localities->localitieid =  implode(',', $local);
        $service_localities->save();
        
        $service_price = new lsServicePrice;
@@ -176,7 +184,12 @@ class ServiceController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = lsCategory::all();
+        $cities = lsCity::all(); 
+
+        $service = lsService::find($id);
+
+        return view('admin.services.edit',compact('category', 'cities', 'service'));
     }
 
     /**

@@ -41,7 +41,7 @@
 				</div>
 			</div>
 			<!--begin::Form-->
-			<form class="kt-form" action="{{ route('admin.category.store') }}" method="post">
+			<form class="kt-form" action="{{ route('admin.category.store') }}" method="post" enctype="multipart/form-data">
 				<div class="kt-portlet__body">
 					<div class="form-group m-0">
 						@csrf
@@ -52,6 +52,13 @@
 							<div class="invalid-feedback">{{ $errors->first('cname') }}</div>
 						@endif
 						<br>
+						<label for="cimg" style="">Category Image</label>
+						<input style="margin-bottom:5px;" type="file" style="" class="form-control @if($errors->has('cimg')) is-invalid @endif" id="cimg" name="cimg" placeholder="Upload Image" accept="image/*"/>                    
+						@error('cimg')
+							<span class="invalid-feedback" role="alert">
+								{{ $message }}
+							</span>
+						@enderror
 						<!-- <label for="exampleSelect1">Select City</label>
 						<select class="form-control" id="cityid" name="cityid">
 							<option disabled selected value>Select City</option>	

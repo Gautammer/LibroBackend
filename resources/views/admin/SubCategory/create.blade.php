@@ -41,7 +41,7 @@
 				</div>
 			</div>
 			<!--begin::Form-->
-			<form class="kt-form" action="{{ route('admin.SubCategory.store') }}" method="post">
+			<form class="kt-form" action="{{ route('admin.SubCategory.store') }}" method="post" enctype="multipart/form-data">
 				<div class="kt-portlet__body">
 					<div class="form-group m-0">
 						@csrf
@@ -52,7 +52,7 @@
 						@endif
 						<span class="form-text text-muted">Please Enter SubCategory name here,SubCategory must be unique.</span>
 						<br>
-						<label for="cname">Selecte Category</label>
+						<label for="cname">Select Category</label>
 						
 							<select class="form-control kt-select2 @if($errors->has('cid')) is-invalid @endif" id="subCategory_select" name="cid">
 								<option disabled selected value>Selecte Category Name</option>				
@@ -63,6 +63,14 @@
 					@if($errors->has('cid'))
 							<div class="invalid-feedback">{{ $errors->first('cid') }} </div>
 						@endif
+						<br>
+						<label for="scimg" style="margin-top: 1px;">Sub Category Image</label>
+						<input style="margin-bottom:5px;" type="file" style="" class="form-control @if($errors->has('scimg')) is-invalid @endif" id="scimg" name="scimg" accept="image/*"/>                    
+						@error('scimg')
+							<span class="invalid-feedback" role="alert">
+								{{ $message }}
+							</span>
+						@enderror
 						
 					</div>
 					

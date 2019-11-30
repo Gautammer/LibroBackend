@@ -61,6 +61,7 @@ return array(
     'App\\Model\\lsPartnerAdharcard' => $baseDir . '/app/Model/lsPartnerAdharcard.php',
     'App\\Model\\lsPartnerCategoryAndPrice' => $baseDir . '/app/Model/lsPartnerCategoryAndPrice.php',
     'App\\Model\\lsPartnerEarning' => $baseDir . '/app/Model/lsPartnerEarning.php',
+    'App\\Model\\lsPartnerProfile' => $baseDir . '/app/Model/lsPartnerProfile.php',
     'App\\Model\\lsPartnerRating' => $baseDir . '/app/Model/lsPartnerRating.php',
     'App\\Model\\lsPermission' => $baseDir . '/app/Model/lsPermission.php',
     'App\\Model\\lsProductCategory' => $baseDir . '/app/Model/lsProductCategory.php',

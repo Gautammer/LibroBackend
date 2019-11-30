@@ -573,6 +573,7 @@ class ComposerStaticInitdec91a56a565598cb0512ea5df7a39c4
         'App\\Model\\lsPartnerAdharcard' => __DIR__ . '/../..' . '/app/Model/lsPartnerAdharcard.php',
         'App\\Model\\lsPartnerCategoryAndPrice' => __DIR__ . '/../..' . '/app/Model/lsPartnerCategoryAndPrice.php',
         'App\\Model\\lsPartnerEarning' => __DIR__ . '/../..' . '/app/Model/lsPartnerEarning.php',
+        'App\\Model\\lsPartnerProfile' => __DIR__ . '/../..' . '/app/Model/lsPartnerProfile.php',
         'App\\Model\\lsPartnerRating' => __DIR__ . '/../..' . '/app/Model/lsPartnerRating.php',
         'App\\Model\\lsPermission' => __DIR__ . '/../..' . '/app/Model/lsPermission.php',
         'App\\Model\\lsProductCategory' => __DIR__ . '/../..' . '/app/Model/lsProductCategory.php',
